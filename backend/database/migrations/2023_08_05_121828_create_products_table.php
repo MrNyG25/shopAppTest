@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('sku', 50)->unique();
             $table->text('description');
+            $table->text('image_url');
             $table->bigInteger('price')->unsigned();
             $table->integer('stock_quantity')->unsigned();
             $table->string('status')->default(Product::PRODUCT_NOT_AVAILABLE);

@@ -17,8 +17,9 @@ class Product extends Model
         'name', 
         'sku', 
         'description', 
+        'image_url',
         'price', 
-        'stock_quantity'
+        'stock_quantity',
     ];
 
     public function isAvailable(){

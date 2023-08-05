@@ -33,13 +33,7 @@ class AuthController extends ApiController
         if(!isset($user)){
             return $this->errorResponse("Invalid login", 401);
         }
-/* 
-        $password = 'pass1234';
 
-$encryptedPassword = encrypt($password);
-$decryptedPassword = decrypt($encryptedPassword); */
-
-// true
         if(decrypt($user->password) == $request->post('password')){
             return $this->successResponseMessage("Valid login", 200);
         }

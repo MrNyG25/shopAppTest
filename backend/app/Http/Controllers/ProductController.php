@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ProductController extends ApiController
@@ -31,6 +32,7 @@ class ProductController extends ApiController
             'name' => 'required|string|max:100',
             'sku' => 'required|string|max:50|unique:products',
             'description' => 'required|string',
+            'image' => 'required|file|mimes:jpg,png',
             'price' => 'required|integer|min:0',
             'stock_quantity' => 'required|integer|min:1',
         ]);
@@ -39,10 +41,19 @@ class ProductController extends ApiController
             return $this->errorResponse($validator->errors(), 400);
         }
 
+        $path = 'no-image';
+
+        if ($request->hasFile('image')) {
+            $path = Storage::putFile('products_images', $request->file('image'));
+        }
+
         $product = Product::create(
             array_merge(
                 $request->all(), 
-                ["status" => Product::PRODUCT_AVAILABLE]
+                [
+                    "status" => Product::PRODUCT_AVAILABLE,
+                    "image_url" => $path,
+                ]
             )
         );
         
@@ -72,6 +83,7 @@ class ProductController extends ApiController
         $validator = Validator::make($request->all(), [
             'name' => 'string|max:100',
             'sku' => 'string|max:50|unique:products',
+            'image' => 'nullable|file|mimes:jpg,png',
             'description' => 'string',
             'price' => 'integer|min:0',
         ]);
@@ -80,12 +92,22 @@ class ProductController extends ApiController
             return $this->errorResponse($validator->errors(), 400);
         }
 
-        $product->fill($request->only([
+        $dataToUpdate = $request->only([
             'sku',
             'name',
             'description',
             'price',
-        ]));
+        ]);
+
+        if ($request->hasFile('image')) {
+            Storage::delete($product->image->url);
+            $path = Storage::putFile('products_images', $request->file('image'));
+            array_push($dataToUpdate, ["image_url" => $path]);
+
+        }
+
+
+        $product->fill($dataToUpdate);
 
         if($product->isClean()){
             return $this->errorResponse("you must update at least one field to use this action", 422);

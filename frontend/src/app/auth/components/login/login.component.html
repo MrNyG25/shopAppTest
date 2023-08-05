@@ -1,0 +1,43 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="container" >
+    <div style="width: 28rem;">
+      <p-card>
+        <div class="grid">
+          <img
+            src="assets/cart_rm.png"
+            class="login-logo col-12"
+            alt="login-logo"
+            width="50"
+            routerLink="/home"
+          />
+        </div>
+  
+        <div class="grid">
+          <div class="p-inputgroup col-12">
+            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+            <input type="text" formControlName="email" pInputText placeholder="test@mail.com" [ngClass]="{'ng-invalid': globalService.isFieldInvalid(email), 'ng-dirty': globalService.isFieldInvalid(email)}" />
+          </div>
+
+          <div *ngIf="globalService.isFieldInvalid(email, 'required')">
+            <small class="invalidField">Este campo no puede estar vació</small>
+          </div>
+ 
+        
+        </div>
+        <div class="grid">
+          <div class="p-inputgroup col-12">
+            <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+            <input type="password"  formControlName="password" pInputText placeholder="Password" [ngClass]="{'ng-invalid': globalService.isFieldInvalid(password), 'ng-dirty': globalService.isFieldInvalid(password)}"/>
+          </div>
+          <div *ngIf="globalService.isFieldInvalid(password, 'required')">
+            <small class="invalidField">Este campo no puede estar vació</small>
+          </div>
+          <div *ngIf="password.errors?.['minlength']?.actualLength != null ">            
+            <small class="invalidField">Este campo debe tener como mínimo 8 caracteres</small>
+          </div>
+        </div>
+        <button class="col-12 p-button-success" pButton label="Iniciar sesión" type="sumit" ></button>
+      </p-card>
+    </div>
+  </form>
+
+  <p-toast position="bottom-center" key="bc"></p-toast>

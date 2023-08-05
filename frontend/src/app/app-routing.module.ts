@@ -10,6 +10,10 @@ const routes: Routes = [
     path: 'products-public',
     loadChildren: () => import('./product-public/product-public.module').then(m => m.ProductPublicModule)
   },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+  },
   { path: '',   redirectTo: '/products-public', pathMatch: 'full' },
   { path: '**', redirectTo: '/products-public', }, 
 ];

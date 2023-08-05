@@ -1,0 +1,9 @@
+<button pButton icon="pi pi-shopping-cart" (click)="op.toggle($event)" class="p-button-success "  pTooltip="Ver Carrito" tooltipPosition="bottom"></button>
+  
+
+<p-overlayPanel #op [style]="{'width': '450px'}" [showCloseIcon]="true">
+    <ng-template pTemplate="content">
+        <h3>Carrito</h3>
+        <app-products-list-cart [products]="products"></app-products-list-cart>
+    </ng-template>
+</p-overlayPanel>

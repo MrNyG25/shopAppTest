@@ -9,11 +9,13 @@ import { ProductPublicListComponent } from './components/product-public-list/pro
 import { CommonComponentsModule } from '../components/common-components.module';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { PipeModule } from '../pipes/pipe.module';
+import { CustomerFormComponent } from './components/customer-form/customer-form.component';
 
 @NgModule({
   declarations: [
     ProductPublicListComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    CustomerFormComponent
   ],
   imports: [
     CommonModule,

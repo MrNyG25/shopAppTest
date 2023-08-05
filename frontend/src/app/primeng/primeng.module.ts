@@ -16,6 +16,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { FileUploadModule } from 'primeng/fileupload';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { FileUploadModule } from 'primeng/fileupload';
     AutoCompleteModule,
     DialogModule,
     ToastModule,
-    FileUploadModule],
+    FileUploadModule,
+    OverlayPanelModule],
   exports: [CommonModule, MenubarModule,
     ButtonModule,
     CardModule,
@@ -49,6 +51,8 @@ import { FileUploadModule } from 'primeng/fileupload';
     AutoCompleteModule,
     DialogModule,
     ToastModule,
-    FileUploadModule],
+    FileUploadModule,
+    OverlayPanelModule]
+    ,
 })
 export class PrimengModule {}

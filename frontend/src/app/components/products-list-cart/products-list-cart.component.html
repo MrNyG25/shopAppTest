@@ -1,0 +1,27 @@
+<p-table [value]="products" [paginator]="false" [rows]="10" [tableStyle]="{'min-width': '50rem'}">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:25%">Nombre</th>
+                <th style="width:25%">Imagen</th>
+                <th style="width:25%">Precio</th>
+                <th style="width:25%">Acciones</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{product.name}}</td>
+                <td>
+                    <img [src]="product.image_url | image" alt="{{product.name}}" style="max-width: 100px; max-height: 100px;">
+                </td>
+                <td>{{product.price | currency: 'COP': 'symbol' }}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="footer" let-product>
+
+            
+            <strong>Total productos: </strong>{{products?.length}}<br/>
+            <strong>Total costo: </strong> {{total_price | currency: 'COP': 'symbol'}}<br/>
+            <strong>Promociones: </strong> No aplica <br/>
+            <button pButton icon="pi pi-plus"  styleClass="p-button-rounded p-button-success" pTooltip="Continuar con la compra" tooltipPosition="bottom"></button>
+        </ng-template>  
+    </p-table>

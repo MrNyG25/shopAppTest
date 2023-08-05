@@ -15,6 +15,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
+import { FileUploadModule } from 'primeng/fileupload';
+
 
 @NgModule({
   declarations: [],
@@ -32,7 +34,8 @@ import { ToastModule } from 'primeng/toast';
     DropdownModule,
     AutoCompleteModule,
     DialogModule,
-    ToastModule],
+    ToastModule,
+    FileUploadModule],
   exports: [CommonModule, MenubarModule,
     ButtonModule,
     CardModule,
@@ -45,6 +48,7 @@ import { ToastModule } from 'primeng/toast';
     DropdownModule,
     AutoCompleteModule,
     DialogModule,
-    ToastModule],
+    ToastModule,
+    FileUploadModule],
 })
 export class PrimengModule {}

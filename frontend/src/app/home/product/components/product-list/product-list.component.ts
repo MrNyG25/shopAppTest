@@ -13,7 +13,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   providers: [MessageService, ConfirmationService, DialogService],
 })
 export class ProductListComponent {
-  refHotelFormModal: DynamicDialogRef = new DynamicDialogRef;
+  refProductFormModal: DynamicDialogRef = new DynamicDialogRef;
 
   
   first = 0;
@@ -27,23 +27,28 @@ export class ProductListComponent {
     public dialogService: DialogService,) {}
 
   ngOnInit() {
-    //this.getproducts();
+    this.getProducts();
   }
 
 
-  /* getproducts(): void{
+  getProducts(): void{
     this.productService
-      .getproducts()
-      .subscribe((products: Product[]) => (this.products = products));
-  } */
+      .getProducts()
+      .subscribe((res: any) => {
+        let products: Product[] = res.data;
+
+        this.products = products
+
+      });
+  }
 
   onChangeProductStatus(product_id: string){
     //this.productService.toggleproductstatus(hotel_id);
     console.log(product_id)
   }
 
-  onShowRoomFormModal(data_to_patch: any = null): void {
-    this.refHotelFormModal = this.dialogService.open(ProductFormComponent, {
+  onShowProductFormModal(data_to_patch: Product | null = null): void {
+    this.refProductFormModal = this.dialogService.open(ProductFormComponent, {
         header: 'Registro producto',
         width: '70%',
         contentStyle: { overflow: 'auto' },
@@ -54,15 +59,15 @@ export class ProductListComponent {
         }
     });
 
-    /* this.refHotelFormModal.onClose.subscribe(() => {
-      this.getproducts();
-    }); */
+    this.refProductFormModal.onClose.subscribe(() => {
+      this.getProducts();
+    });
 
   }
 
   ngOnDestroy(): void {
-    if (this.refHotelFormModal) {
-        this.refHotelFormModal.close();
+    if (this.refProductFormModal) {
+        this.refProductFormModal.close();
     }
   }
 }

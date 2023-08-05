@@ -6,6 +6,8 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { PrimengModule } from '../../primeng/primeng.module';
+import { NgxCurrencyModule } from "ngx-currency";
+import { PipeModule } from 'src/app/pipes/pipe.module';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { PrimengModule } from '../../primeng/primeng.module';
     ProductRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    PrimengModule
+    PrimengModule,
+    NgxCurrencyModule,
+    PipeModule
   ]
 })
 export class ProductModule { }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -44,7 +45,10 @@ class ProductController extends ApiController
         $path = 'no-image';
 
         if ($request->hasFile('image')) {
-            $path = Storage::putFile('products_images', $request->file('image'));
+            $photo_file = $request->file('image');
+            $now = Carbon::now();
+            $hash = $photo_file->hashName();
+            $path = $photo_file->storeAs('public/files/products_images/'.$now->toDateString(),'time_'.$now->format('h_i_s').'_'.  $hash);
         }
 
         $product = Product::create(

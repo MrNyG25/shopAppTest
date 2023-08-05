@@ -1,1 +1,77 @@
-<p>product-form works!</p>
+<form class="grid" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+    <div class="col-6">
+        <div class="flex flex-column gap-2">
+            <label class="">Nombre</label>
+            <input pInputText formControlName="name"  placeholder="Zapatos" [ngClass]="{'ng-invalid': globalService.isFieldInvalid(name), 'ng-dirty': globalService.isFieldInvalid(name)}"  />
+            <div *ngIf="globalService.isFieldInvalid(name, 'required')">
+                <small style="color: #ef4444;">Este campo no puede estar vació</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6">
+        <div class="flex flex-column gap-2">
+            <label class="">SKU</label>
+            <input pInputText  formControlName="sku" [ngClass]="{'ng-invalid': globalService.isFieldInvalid(name), 'ng-dirty': globalService.isFieldInvalid(sku)}" [ngClass]="{'ng-invalid': globalService.isFieldInvalid(sku), 'ng-dirty': globalService.isFieldInvalid(sku)}" />
+            <div *ngIf="globalService.isFieldInvalid(sku, 'required')">
+                <small style="color: #ef4444;">Este campo no puede estar vació</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="flex flex-column gap-2">
+            <label class="">Descripción</label>
+            <input pInputText  formControlName="description" type="text" [ngClass]="{'ng-invalid': globalService.isFieldInvalid(description), 'ng-dirty': globalService.isFieldInvalid(description)}"/>
+            <div *ngIf="globalService.isFieldInvalid(description, 'required')">
+                <small style="color: #ef4444;">Este campo no puede estar vació</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="flex flex-column gap-2">
+            <label class="">Precio</label>
+            <input pInputText currencyMask  formControlName="price" type="text" placeholder="200.000" [options]="{ prefix: 'COP$ ', thousands: ',', decimal: '.', precision: 0 }" [ngClass]="{'ng-invalid': globalService.isFieldInvalid(price), 'ng-dirty': globalService.isFieldInvalid(price)}"/>
+            <div *ngIf="globalService.isFieldInvalid(price, 'required')">
+                <small style="color: #ef4444;">Este campo no puede estar vació</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="flex flex-column gap-2">
+            <label class="">Cantidad</label>
+            <input pInputText  formControlName="stock_quantity" type="text" [ngClass]="{'ng-invalid': globalService.isFieldInvalid(stock_quantity), 'ng-dirty': globalService.isFieldInvalid(stock_quantity)}"/>
+            <div *ngIf="globalService.isFieldInvalid(stock_quantity, 'required')">
+                <small style="color: #ef4444;">Este campo no puede estar vació</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6">
+        <div class="flex flex-column gap-2">
+            <label class="">Imagen</label>
+            <p-fileUpload name="myfile[]"  
+                        [multiple]="false" 
+                        [showUploadButton]="false" 
+                        chooseLabel="Agregar" 
+                        cancelLabel="Cancelar" 
+                        chooseIcon="pi pi-image" 
+                        accept="image/*" 
+                        (onSelect)="onSelect($event)">
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                    </ul>
+                </ng-template>
+            </p-fileUpload>
+
+        </div>
+    </div>
+
+ 
+    
+   
+    <p-button icon="pi pi-plus-circle" styleClass="p-button-success mt-3" [label]="isEditing ? 'Editar' : 'Guardar'" type="submit"></p-button>
+</form>
+
+<p-toast position="bottom-center" key="bc"></p-toast>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 
@@ -8,6 +8,8 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+  @Input() isAdminMode: boolean = false;
+  
   items: MenuItem[] = [];
 
   ngOnInit() {

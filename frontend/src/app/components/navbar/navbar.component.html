@@ -3,7 +3,7 @@
         <img src="assets/cart_rm.png" class="logo" routerLink="/products" alt="logo" >
     </ng-template>
 
-    <ng-template pTemplate="end" >
+    <ng-template pTemplate="end" *ngIf="!isAdminMode">
         <button class="p-button-success" routerLink="/auth/login" pButton label="Iniciar sesión" icon="pi pi-sign-in"   ></button>
 
         <button  pButton label="Registrarse" icon="pi pi-id-card"  class="spacingLoginButton"></button>

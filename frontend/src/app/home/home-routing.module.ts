@@ -4,12 +4,14 @@ import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
-    path: 'products',
-    loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
+    path: '',
+    component: HomeComponent,
+    children: [
+      {
+        path: 'products',
+        loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
+      },
+    ]
   },
 ];
 

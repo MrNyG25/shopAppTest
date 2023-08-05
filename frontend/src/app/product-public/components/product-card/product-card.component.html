@@ -1,0 +1,11 @@
+<p-card class="sm:col-12 md:col-4 lg:col-4 col-12" [header]="product.name" [style]="{'width': '25rem', 'margin-bottom': '2em'}">
+
+    <img [src]="product.image_url | image" [width]="313" [height]="246" alt="{{ product.name }}" />
+    <ng-template pTemplate="footer">
+        <div class="footer-container">
+            <span> {{ product.price | currency: 'COP': 'symbol' }}</span>
+            <button pButton icon="pi pi-cart-plus" class="p-button-success" pTooltip="Agregar al carrito" tooltipPosition="bottom"></button>
+        </div>
+       
+    </ng-template>
+</p-card>

@@ -7,16 +7,20 @@ import { ProductPublicRoutingModule } from './product-public-routing.module';
 import { PrimengModule } from '../primeng/primeng.module';
 import { ProductPublicListComponent } from './components/product-public-list/product-public-list.component';
 import { CommonComponentsModule } from '../components/common-components.module';
+import { ProductCardComponent } from './components/product-card/product-card.component';
+import { PipeModule } from '../pipes/pipe.module';
 
 @NgModule({
   declarations: [
-    ProductPublicListComponent
+    ProductPublicListComponent,
+    ProductCardComponent
   ],
   imports: [
     CommonModule,
     ProductPublicRoutingModule,
     PrimengModule,
-    CommonComponentsModule
+    CommonComponentsModule,
+    PipeModule
   ]
 })
 export class ProductPublicModule { }

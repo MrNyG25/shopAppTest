@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Product::updated(function($product){
-            if($product->quantity  == 0 && $product->isAvailable()){
+            if($product->stock_quantity  == 0 ){
                 $product->status = Product::PRODUCT_NOT_AVAILABLE;
 
                 $product->update();

@@ -6,7 +6,7 @@
     <ng-template pTemplate="end" *ngIf="!isAdminMode">
         <button class="p-button-success" routerLink="/auth/login" pButton label="Iniciar sesión" icon="pi pi-sign-in"   ></button>
 
-        <button  pButton label="Registrarse" icon="pi pi-id-card"  class="spacingLoginButton"></button>
+        <button  pButton label="Registrarse" routerLink="/products-public/register-customer" icon="pi pi-id-card"  class="spacingLoginButton"></button>
 
         <app-shopping-cart class="ml-2"></app-shopping-cart>
     </ng-template>

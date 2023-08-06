@@ -5,6 +5,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ProductsListCartComponent } from './products-list-cart/products-list-cart.component';
 import { PipeModule } from '../pipes/pipe.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -12,12 +13,13 @@ import { PipeModule } from '../pipes/pipe.module';
   declarations: [
     NavbarComponent,
     ShoppingCartComponent,
-    ProductsListCartComponent
+    ProductsListCartComponent,
   ],
   imports: [
     CommonModule,
     PrimengModule,
-    PipeModule
+    PipeModule,
+    ReactiveFormsModule
   ],
   exports:[
     NavbarComponent

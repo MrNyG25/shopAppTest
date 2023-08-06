@@ -1,0 +1,95 @@
+<app-navbar [isAdminMode]="false"></app-navbar>
+
+<div class="grid mt-5">
+  <div class="col-1"></div>
+  <div class="col-10">
+    <h1>Registro comprador</h1>
+  </div>
+  <div class="col-1"></div>
+  <div class="col-1"></div>
+  <div class="col-10">
+    <form class="grid" [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+
+      <div class="col-6">
+        <div class="flex flex-column gap-2">
+          <label class="">Nombre</label>
+          <input pInputText formControlName="name" placeholder="Nombre" [ngClass]="{'ng-invalid': globalService.isFieldInvalid(name), 'ng-dirty': globalService.isFieldInvalid(name)}" />
+          <div *ngIf="globalService.isFieldInvalid(name, 'required')">
+            <small style="color: #ef4444;">Este campo no puede estar vacío</small>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col-6">
+        <div class="flex flex-column gap-2">
+          <label class="">Apellido</label>
+          <input pInputText formControlName="surname" placeholder="Apellido" [ngClass]="{'ng-invalid': globalService.isFieldInvalid(surname), 'ng-dirty': globalService.isFieldInvalid(surname)}" />
+          <div *ngIf="globalService.isFieldInvalid(surname, 'required')">
+            <small style="color: #ef4444;">Este campo no puede estar vacío</small>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col-6">
+        <div class="flex flex-column gap-2">
+          <label class="">Número de teléfono</label>
+          <input pInputText formControlName="phone_number" type="number" placeholder="Número de teléfono" [ngClass]="{'ng-invalid': globalService.isFieldInvalid(phone_number), 'ng-dirty': globalService.isFieldInvalid(phone_number)}" />
+          <div *ngIf="globalService.isFieldInvalid(phone_number, 'required')">
+            <small style="color: #ef4444;">Este campo no puede estar vacío</small>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col-6">
+        <div class="flex flex-column gap-2">
+          <label class="">Correo electrónico</label>
+          <input pInputText formControlName="email" type="email" placeholder="Correo electrónico" [ngClass]="{'ng-invalid': globalService.isFieldInvalid(email), 'ng-dirty': globalService.isFieldInvalid(email)}" />
+          <div *ngIf="globalService.isFieldInvalid(email, 'required')">
+            <small style="color: #ef4444;">Este campo no puede estar vacío</small>
+          </div>
+          <div *ngIf="email.errors?.['pattern']">
+            <small style="color: #ef4444;">El campo email debe estar en este formato prueba@gmail.com</small>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col-6">
+        <div class="flex flex-column gap-2">
+          <label class="">Contraseña</label>
+          <input pInputText formControlName="password" type="password" placeholder="Contraseña" [ngClass]="{'ng-invalid': globalService.isFieldInvalid(password), 'ng-dirty': globalService.isFieldInvalid(password)}" />
+          <div *ngIf="globalService.isFieldInvalid(password, 'required')">
+            <small style="color: #ef4444;">Este campo no puede estar vacío</small>
+          </div>
+          <div *ngIf="password.errors?.['minlength']?.actualLength != null ">            
+              <small class="invalidField">Este campo debe tener como mínimo 8 caracteres</small>
+            </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="flex flex-column gap-2">
+          <label class="">Confirmar contraseña</label>
+          <input pInputText formControlName="password_confirmation" type="password" placeholder="Confirmar contraseña" [ngClass]="{'ng-invalid': globalService.isFieldInvalid(password_confirmation), 'ng-dirty': globalService.isFieldInvalid(password_confirmation)}" />
+          <div *ngIf="globalService.isFieldInvalid(password_confirmation, 'required')">
+            <small style="color: #ef4444;">Este campo no puede estar vacío</small>
+          </div>
+          <div *ngIf="customerForm.hasError('passwordMismatch') && customerForm.dirty">
+            <small style="color: #ef4444;">La contraseñas no coinciden</small>
+          </div>
+        </div>
+      </div>
+
+
+    
+    
+      <!-- Add more fields if needed -->
+    
+      <p-button icon="pi pi-plus-circle" styleClass="p-button-success mt-3" [label]="'Registrar'" type="submit"></p-button>
+    </form>
+    
+  </div>
+  <div class="col-1"></div>
+</div>
+
+  <p-toast position="bottom-center" key="bc"></p-toast>
+  

@@ -9,6 +9,7 @@ import { ProductPublicListComponent } from './components/product-public-list/pro
 import { CommonComponentsModule } from '../components/common-components.module';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { PipeModule } from '../pipes/pipe.module';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CustomerFormComponent } from './components/customer-form/customer-form.component';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { CustomerFormComponent } from './components/customer-form/customer-form.
     CommonModule,
     ProductPublicRoutingModule,
     PrimengModule,
+    ReactiveFormsModule,
     CommonComponentsModule,
     PipeModule
   ]

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CustomerFormComponent } from './product-public/components/customer-form/customer-form.component';
 
 const routes: Routes = [
   {
@@ -9,6 +10,10 @@ const routes: Routes = [
   {
     path: 'products-public',
     loadChildren: () => import('./product-public/product-public.module').then(m => m.ProductPublicModule)
+  },
+  {
+    path: 'customer-form',
+    component: CustomerFormComponent
   },
   {
     path: 'home',

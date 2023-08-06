@@ -12,8 +12,8 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, SoftDeletes;
 
-    const ADMIN_USER = 'true';
-    const REGULAR_USER = 'false';
+    const ADMIN_USER = true;
+    const REGULAR_USER = false;
 
     /**
      * The attributes that are mass assignable.
@@ -22,8 +22,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'surname',
+        'phone_number',
         'email',
         'password',
+        'is_admin'
     ];
 
     /**

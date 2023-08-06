@@ -45,7 +45,7 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value as LoginData)
                 .subscribe((res: any) =>{
                   this.showBottomCenter('success', 'Mensaje', 'Bienvenido')
-        this.router.navigate(['/auth/login'])
+        this.router.navigate(['/home'])
       }, err => {
         this.showBottomCenter('error', 'Error', 'Credenciale invalidas o usuario no existe')
       })

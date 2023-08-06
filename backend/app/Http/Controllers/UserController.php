@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends ApiController
 {
@@ -32,7 +32,7 @@ class UserController extends ApiController
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:50',
             'surname' => 'required|string|max:50',
-            'phone_number' => 'required|string|max:50',
+            'phone_number' => 'required|max:50',
             'email' => 'required|string|max:50|email|unique:users',
             'password' => ['required','string', 'confirmed',Password::min(8)]
         ]);
@@ -45,6 +45,8 @@ class UserController extends ApiController
 
         $fields['password'] = encrypt($request->password);
         $fields['is_admin'] = User::REGULAR_USER;
+
+        unset($fields['password_confirmation']);
 
         $user = User::create($fields);
 

@@ -11,12 +11,20 @@ export class ProductsListCartComponent {
   total_price: number = 0;
 
   ngOnInit(): void {
-    this.computePriceProducts();
+
+    let productsLocalStorage = localStorage.getItem('cart_products');
+    if(productsLocalStorage){
+      this.products = JSON.parse(productsLocalStorage)
+      this.computePriceProducts();
+    }
+    
     
   }
 
   computePriceProducts(){
-    this.total_price = this.products.map(product => product.price)
-                                    .reduce((sum,productPrice) => (sum + productPrice))
+    if(this.products.length > 0){
+      this.total_price = this.products.map(product => product.price)
+                                      .reduce((sum,productPrice) => (sum + productPrice))
+    }
   }
 }

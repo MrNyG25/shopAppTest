@@ -13,7 +13,7 @@ export class ProductPublicListComponent implements OnInit {
 
 
   constructor(
-    private productPublicService: ProductPublicService
+    private productPublicService: ProductPublicService,
   ) { }
 
   ngOnInit() {

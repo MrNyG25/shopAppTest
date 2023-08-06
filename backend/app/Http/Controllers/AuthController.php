@@ -35,7 +35,7 @@ class AuthController extends ApiController
         }
 
         if(decrypt($user->password) == $request->post('password')){
-            return $this->successResponseMessage("Valid login", 200);
+            return $this->showOne($user, 200);
         }
 
         return $this->errorResponse("Invalid login", 401);

@@ -12,14 +12,21 @@ export class NavbarComponent {
   
   items: MenuItem[] = [];
 
+  isSignedIn: boolean = false;
+
   ngOnInit() {
+    let dataUser = localStorage.getItem('user_data');
+
+    if(dataUser){
+      this.isSignedIn = true;
+    }  
+
+    console.log(dataUser);
   }
 
-  login(): void{
-
+  logOut(): void{
+    this.isSignedIn = false;
+    localStorage.removeItem('user_data');
   }
 
-  register(): void{
-
-  }
 }

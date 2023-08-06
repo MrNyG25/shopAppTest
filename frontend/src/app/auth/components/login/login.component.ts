@@ -42,10 +42,14 @@ export class LoginComponent {
     const password = this.loginForm.value.password;
     console.log(this.loginForm.value)
     if(this.loginForm.valid){
-      this.authService.login(this.loginForm.value as LoginData)
-                .subscribe((res: any) =>{
-                  this.showBottomCenter('success', 'Mensaje', 'Bienvenido')
-        this.router.navigate(['/home'])
+      this.authService.login(this.loginForm.value as LoginData).subscribe((res: any) =>{
+        if(res?.data?.is_admin){
+          this.router.navigate(['/home'])
+        }else{
+          this.router.navigate(['/products-public'])
+          localStorage.setItem('user_data', JSON.stringify(res?.data));
+        }
+        this.showBottomCenter('success', 'Mensaje', 'Bienvenido')
       }, err => {
         this.showBottomCenter('error', 'Error', 'Credenciale invalidas o usuario no existe')
       })

@@ -33,4 +33,46 @@ export class GlobalService {
     return false;
   }
 
+    /**
+   * Retrieves data from the Local Storage using the specified key.
+   *
+   * @param {string} localStorageKey - The key used to store the data in Local Storage.
+   * @returns {any} The data stored in Local Storage corresponding to the provided key.
+   */
+   getDataLocalStorage(localStorageKey) {
+    return localStorage.getItem(localStorageKey);
+  }
+
+  /**
+   * Refreshes the data stored in Local Storage with the provided data array.
+   *
+   * @param {string} localStorageKey - The key used to store the data in Local Storage.
+   * @param {any[]} data - The data array to be stored in Local Storage.
+   */
+   refreshLocalStorage(localStorageKey, data) {
+    localStorage.setItem(localStorageKey, JSON.stringify([...data]));
+  }
+
+  /**
+   * Retrieves data from Local Storage based on the provided key. If no data is found,
+   * it stores the provided data array in Local Storage and returns it.
+   *
+   * @param {string} localStorageKey - The key used to store and retrieve the data in Local Storage.
+   * @param {any[]} data - The data array to be stored in Local Storage if no data is found.
+   * @returns {any[]} The data stored in Local Storage corresponding to the provided key,
+   * or the provided data array if no data is found in Local Storage.
+   */
+   getData(localStorageKey, data) {
+    const savedData = this.getDataLocalStorage(localStorageKey);
+
+    if (!savedData) {
+      this.refreshLocalStorage(localStorageKey, data);
+      const savedData = this.getDataLocalStorage(localStorageKey);
+      return JSON.parse(savedData);
+    }
+
+    return JSON.parse(savedData);
+  }
+
+
 }

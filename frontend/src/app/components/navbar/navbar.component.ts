@@ -27,6 +27,7 @@ export class NavbarComponent {
   logOut(): void{
     this.isSignedIn = false;
     localStorage.removeItem('user_data');
+    localStorage.removeItem('cart_products')
   }
 
 }

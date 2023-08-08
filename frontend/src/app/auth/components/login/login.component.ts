@@ -43,6 +43,8 @@ export class LoginComponent {
     console.log(this.loginForm.value)
     if(this.loginForm.valid){
       this.authService.login(this.loginForm.value as LoginData).subscribe((res: any) =>{
+        localStorage.removeItem('cart_products')
+        localStorage.removeItem('user_data')
         if(res?.data?.is_admin){
           this.router.navigate(['/home'])
         }else{
